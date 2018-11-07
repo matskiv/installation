@@ -1,0 +1,29 @@
+[local:vars]
+ansible_connection=local
+
+# The password for the admin user in admin realm
+rhsso_admin_password="{{eval_rhsso_admin_password}}"
+# The admin user for the admin realm
+rhsso_admin_user="{{eval_rhsso_admin_username}}"
+# The route to the cluster RH-SSO
+rhsso_route="{{rhsso_route}}"
+# The realm being used for logging into the cluster
+rhsso_realm="{{rhsso_realm}}"
+# The admin realm 
+rhsso_admin_realm="{{rhsso_admin_realm}}"
+# The evals cluster admin email
+rhsso_cluster_admin_email: "{{rhsso_cluster_admin_email}}"
+# The evals cluster admin username
+rhsso_cluster_admin_username: "{{ rhsso_cluster_admin_email }}"
+# The evals cluster admin password
+rhsso_cluster_admin_password: "{{rhsso_cluster_admin_password}}"
+# The namespace the cluster rhsso is installed into 
+rhsso_namespace: "{{eval_rhsso_namespace}}"
+
+nexus_namespace: "{{nexus_namespace}}"
+
+launcher_namespace: "{{launcher_namespace}}"
+
+[local]
+127.0.0.1
+

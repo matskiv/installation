@@ -1,0 +1,11 @@
+- name: Generate custom inventory
+  template:
+    src: "inventory.j2"
+    dest: /tmp/generated_inventory
+
+- name: Dump all vars
+  action: template src=dumpall.j2 dest=/tmp/ansible.all    
+
+- name: Create secret with custom inventory
+  debug:
+    msg: "generating secret from file"
