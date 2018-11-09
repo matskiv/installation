@@ -110,6 +110,9 @@
       set_fact:
         eval_launcher_sso_host: "{{ eval_launcher_sso_host_cmd.stdout }}"
       tags: ['bootstrap']
+
+    - name: Expose vars
+      include_vars: "../roles/che/defaults/main.yml"                    
     - 
       name: Install che
       include_role:
@@ -136,6 +139,9 @@
         che_keycloak_host: "{{ eval_launcher_sso_host }}"
       tags: ['che']
       when: eval_action == 'uninstall'
+    
+    - name: Expose vars
+      include_vars: "../roles/3scale/defaults/main.yml"              
     -
       name: Install 3Scale
       include_role:
@@ -143,6 +149,8 @@
       vars:
         threescale_route_suffix: "{{ eval_app_host }}"
       tags: ['3scale']
+    - name: Expose vars
+      include_vars: "../roles/webapp/defaults/main.yml"                
     -
       name: Install webapp
       include_role:
@@ -151,6 +159,9 @@
         openshift_master_url: "{{ hostvars['EVAL_VARS']['openshift_master_url'] }}"
       tags: ['webapp']
       when: eval_action == 'install'
+
+    - name: Expose vars
+      include_vars: "../roles/gitea/defaults/main.yml"              
     - 
       name: Install Gitea
       include_role:
