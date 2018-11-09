@@ -13,14 +13,17 @@ Each Integreatly cluster has a secret in the integeratly namespace with an inven
 can be used to help you add customisations.
 
 ``` 
-oc get secret manifest -n webapp --template '{{index .data "generated_inventory"}}'  | base64 -D
+oc get secret manifest -n webapp --template '{{index .data "generated_inventory"}}'  | base64 -D > inventory
 
 ```
 
 ## Limitations 
 
 You do not have ssh access to the cluster so all customisations are limited to what can be done by the user
-via the OpenShift API 
+via the OpenShift API.
+
+
+## Example Customisation
 
 
 
