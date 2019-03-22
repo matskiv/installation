@@ -80,7 +80,7 @@ spec:
         annotations:
           message: Pod count for namespace {{ '{{' }} $labels.namespace {{ '}}' }} is {{ '{{' }} printf "%.0f" $value {{ '}}' }}. Expected exactly 6 pods.
         expr: |
-          (1-absent(kube_pod_status_ready{condition="true", namespace="launcher"})) or sum(kube_pod_status_ready{condition="true", namespace="launcher"}) != 6
+          (1-absent(kube_pod_status_ready{condition="true", namespace="{{ eval_launcher_namespace }}"})) or sum(kube_pod_status_ready{condition="true", namespace="{{ eval_launcher_namespace }}"}) != 6
         for: 5m
         labels:
           severity: critical
