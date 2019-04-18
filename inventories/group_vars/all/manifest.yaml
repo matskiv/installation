@@ -4,7 +4,7 @@ integreatly_version: master
 
 #Integreatly Operator
 integreatly_operator: true
-integreatly_operator_ns_name: integreatly-operator
+integreatly_operator_ns_name: "{{ns_prefix | default('')}}integreatly-operator"
 integreatly_operator_version: master
 integreatly_operator_deploy: 'https://raw.githubusercontent.com/integr8ly/integreatly-operator/{{integreatly_operator_version}}/deploy'
 
