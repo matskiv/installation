@@ -11,5 +11,11 @@
     is_service: true
 
 - name: "Deploy the Integreatly Operator"
-  shell: "oc apply -f {{ item }} --namespace {{ integreatly_operator_ns_name }}"
-  with_items: "{{ integreatly_operator_deployment }}"
+  shell: "oc process -f {{ integreatly_operator_template }} -p NAMESPACE={{ integreatly_operator_ns_name }} -p INSTALLATION_CONFIG_MAP={{ integreatly_operator_configmap }} | oc apply --namespace {{ integreatly_operator_ns_name }}  -f -"
+
+- template:
+    src: integreatly-customresource.yml.j2
+    dest: /tmp/integreatly-customresource.yml
+
+- name: Create Installation custom resource in {{ integreatly_operator_ns_name }}
+  shell: oc apply -f /tmp/integreatly-customresource.yml -n {{ integreatly_operator_ns_name }}

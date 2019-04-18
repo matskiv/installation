@@ -1,10 +1,9 @@
-integreatly_operator_ns_name: integreatly-operator
+integreatly_operator_ns_name: "{{ns_prefix | default('')}}integreatly-operator"
 integreatly_operator_version: master
 integreatly_operator_deploy: 'https://raw.githubusercontent.com/integr8ly/integreatly-operator/{{integreatly_operator_version}}/deploy'
+integreatly_operator_template: '{{ integreatly_operator_deploy }}/operator.template.yaml'
 integreatly_operator_crds:
   - "{{ integreatly_operator_deploy }}/crds/installation.crd.yaml"
-integreatly_operator_deployment:
-  - "{{ integreatly_operator_deploy }}/service_account.yaml"
-  - "{{ integreatly_operator_deploy }}/role.yaml"
-  - "{{ integreatly_operator_deploy }}/role_binding.yaml"
-  - "{{ integreatly_operator_deploy }}/operator.yaml"
+integreatly_operator_configmap: integreatly-config
+integreatly_cr_name: integreatly-installation
+integreatly_cr_spec_type: workshop
